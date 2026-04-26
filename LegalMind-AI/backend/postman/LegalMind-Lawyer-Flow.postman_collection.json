@@ -1,0 +1,289 @@
+{
+  "info": {
+    "name": "LegalMind Lawyer + Admin Flow",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "APIs for user-lawyer consultation, lawyer admin dashboard, and super-admin approval workflow"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000/api" },
+    { "key": "userToken", "value": "" },
+    { "key": "lawyerToken", "value": "" },
+    { "key": "adminToken", "value": "" },
+    { "key": "lawyerId", "value": "" },
+    { "key": "requestId", "value": "" },
+    { "key": "lawyerEmail", "value": "lawyer1@example.com" },
+    { "key": "lawyerPassword", "value": "pass1234" }
+  ],
+  "item": [
+    {
+      "name": "User Auth",
+      "item": [
+        {
+          "name": "User Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"pass1234\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/login"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.token) pm.collectionVariables.set('userToken', json.token);"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lawyer Public",
+      "item": [
+        {
+          "name": "Register Lawyer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Lawyer One\",\n  \"email\": \"{{lawyerEmail}}\",\n  \"password\": \"{{lawyerPassword}}\",\n  \"city\": \"Delhi\",\n  \"specialization\": \"civil,criminal\"\n}"
+            },
+            "url": "{{baseUrl}}/lawyers/auth/register"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json._id) pm.collectionVariables.set('lawyerId', json._id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lawyer Verification Status",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lawyers/auth/status?email={{lawyerEmail}}"
+          }
+        },
+        {
+          "name": "Lawyer Login (after approval)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{lawyerEmail}}\",\n  \"password\": \"{{lawyerPassword}}\"\n}"
+            },
+            "url": "{{baseUrl}}/lawyers/auth/login"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.token) pm.collectionVariables.set('lawyerToken', json.token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Available Lawyers",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lawyers/available"
+          }
+        }
+      ]
+    },
+    {
+      "name": "User -> Consultation",
+      "item": [
+        {
+          "name": "Create Consultation Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{userToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lawyerId\": \"{{lawyerId}}\",\n  \"issueSummary\": \"Need expert review for agreement clauses\",\n  \"preferredMode\": \"chat\",\n  \"preferredTime\": \"Tomorrow 6PM\"\n}"
+            },
+            "url": "{{baseUrl}}/lawyers/connect"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.request && json.request._id) pm.collectionVariables.set('requestId', json.request._id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "My Consultation Requests",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{userToken}}" }],
+            "url": "{{baseUrl}}/lawyers/my-requests"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lawyer Admin",
+      "item": [
+        {
+          "name": "Lawyer Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{lawyerToken}}" }],
+            "url": "{{baseUrl}}/lawyers/admin/dashboard/stats"
+          }
+        },
+        {
+          "name": "Lawyer Profile",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{lawyerToken}}" }],
+            "url": "{{baseUrl}}/lawyers/admin/profile"
+          }
+        },
+        {
+          "name": "Update Lawyer Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{lawyerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"city\": \"Delhi\",\n  \"consultationFee\": 1500,\n  \"specialization\": \"civil,contract\",\n  \"languages\": \"hindi,english\",\n  \"availabilityStatus\": \"online\"\n}"
+            },
+            "url": "{{baseUrl}}/lawyers/admin/profile"
+          }
+        },
+        {
+          "name": "Get Lawyer Requests",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{lawyerToken}}" }],
+            "url": "{{baseUrl}}/lawyers/admin/requests"
+          }
+        },
+        {
+          "name": "Update Request Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{lawyerToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"accepted\",\n  \"lawyerResponseNote\": \"Will review and connect shortly\"\n}"
+            },
+            "url": "{{baseUrl}}/lawyers/admin/requests/{{requestId}}/status"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Super Admin Approval",
+      "item": [
+        {
+          "name": "Super Admin Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@legalmind.ai\",\n  \"password\": \"admin12345\"\n}"
+            },
+            "url": "{{baseUrl}}/admin/auth/login"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const json = pm.response.json();",
+                  "if (json.token) pm.collectionVariables.set('adminToken', json.token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List Pending Lawyers",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+            "url": "{{baseUrl}}/admin/lawyers/pending"
+          }
+        },
+        {
+          "name": "List All Lawyers",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+            "url": "{{baseUrl}}/admin/lawyers"
+          }
+        },
+        {
+          "name": "Approve Lawyer",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"approve\"\n}"
+            },
+            "url": "{{baseUrl}}/admin/lawyers/{{lawyerId}}/verification"
+          }
+        },
+        {
+          "name": "Reject Lawyer",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"reject\",\n  \"rejectionReason\": \"Incomplete legal credentials\"\n}"
+            },
+            "url": "{{baseUrl}}/admin/lawyers/{{lawyerId}}/verification"
+          }
+        }
+      ]
+    }
+  ]
+}

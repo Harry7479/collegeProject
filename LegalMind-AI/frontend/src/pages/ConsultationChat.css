@@ -1,0 +1,127 @@
+.consult-chat-shell {
+  min-height: 100vh;
+  padding: 24px;
+  background: linear-gradient(140deg, #f8fff7 0%, #e9f4ff 60%, #fff8ea 100%);
+}
+
+.consult-chat-card {
+  max-width: 980px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 48px);
+}
+
+.consult-chat-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.consult-chat-header h1 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.consult-chat-header p {
+  margin: 2px 0 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.chat-status {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+.chat-status.online {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.chat-status.offline {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+.consult-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.consult-msg {
+  max-width: 70%;
+  border-radius: 14px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.consult-msg p {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.consult-msg span {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.consult-msg.mine {
+  align-self: flex-end;
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+}
+
+.consult-msg.theirs {
+  align-self: flex-start;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.consult-chat-input-row {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 12px;
+}
+
+.typing-line {
+  margin: 4px 2px 0;
+  color: #64748b;
+  font-size: 0.82rem;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .consult-chat-shell {
+    padding: 8px;
+  }
+
+  .consult-chat-card {
+    height: calc(100vh - 16px);
+  }
+
+  .consult-chat-header {
+    flex-wrap: wrap;
+  }
+
+  .consult-msg {
+    max-width: 85%;
+  }
+}

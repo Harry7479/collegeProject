@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "document": "Master Service Agreement",
+        "question": "What is the specific definition of 'Confidential Information' according to the agreement?",
+        "answer": "Confidential Information includes all information disclosed by one party to the other which is marked as confidential or should reasonably be understood to be confidential given the nature of the information.",
+        "section": "1.4"
+    },
+    {
+        "id": 2,
+        "document": "Master Service Agreement",
+        "question": "What is the interest rate for late payments?",
+        "answer": "Late payments accrue interest at a rate of 1.5% per month or the maximum rate permitted by law, whichever is lower.",
+        "section": "5.3"
+    },
+    {
+        "id": 3,
+        "document": "Master Service Agreement",
+        "question": "What is the limitation of liability for claims arising out of this agreement?",
+        "answer": "The total liability shall not exceed the amount paid by the User in the twelve (12) months preceding the claim.",
+        "section": "9.2"
+    },
+    {
+        "id": 4,
+        "document": "Master Service Agreement",
+        "question": "How many days notice are required to cure a material breach before termination?",
+        "answer": "A party must fail to cure a breach within thirty (30) days of notice before the agreement can be terminated for cause.",
+        "section": "8.2"
+    },
+    {
+        "id": 5,
+        "document": "Executive Employment Agreement",
+        "question": "How long is the probationary period for the employee?",
+        "answer": "The first six (6) months of employment shall be a probationary period.",
+        "section": "2.2"
+    },
+    {
+        "id": 6,
+        "document": "Executive Employment Agreement",
+        "question": "What is the duration of the non-compete restriction after termination?",
+        "answer": "The employee is restricted for a period of twelve (12) months following the termination of employment.",
+        "section": "7.1"
+    },
+    {
+        "id": 7,
+        "document": "Executive Employment Agreement",
+        "question": "Under what circumstances can the Employer terminate the agreement immediately?",
+        "answer": "In the event of gross misconduct, fraud, or serious breach of contract (Summary Dismissal).",
+        "section": "8.2"
+    },
+    {
+        "id": 8,
+        "document": "Executive Employment Agreement",
+        "question": "Who owns the intellectual property created by the employee during the course of employment?",
+        "answer": "All inventions, designs, computer programs, and improvements made by the Employee during the course of employment shall belong exclusively to the Employer.",
+        "section": "6.1"
+    },
+    {
+        "id": 9,
+        "document": "Master Service Agreement",
+        "question": "Which state laws govern the Master Service Agreement?",
+        "answer": "The laws of the State of Delaware.",
+        "section": "10.1"
+    },
+    {
+        "id": 10,
+        "document": "Executive Employment Agreement",
+        "question": "What is the standard notice period required to terminate the agreement after probation?",
+        "answer": "Three (3) months' written notice.",
+        "section": "8.1"
+    }
+]

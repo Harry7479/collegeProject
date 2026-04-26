@@ -1,0 +1,203 @@
+/* ===== LawyerRegister.css ===== */
+
+/* Card override – wider to fit step 2 */
+.lawyer-register-card {
+  max-width: 520px;
+  width: 100%;
+}
+
+/* ── Step indicator ─────────────────────────────────────────── */
+.register-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 12px 0 20px;
+}
+
+.step-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.45);
+  transition: all 0.3s ease;
+}
+
+.step-dot.step-active {
+  background: linear-gradient(135deg, #6366f1, #818cf8);
+  border-color: #818cf8;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.55);
+}
+
+.step-line {
+  flex: 1;
+  max-width: 60px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
+/* ── Verify info box ─────────────────────────────────────────── */
+.verify-info-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(234, 179, 8, 0.08);
+  border: 1px solid rgba(234, 179, 8, 0.25);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.55;
+}
+
+.verify-info-box svg {
+  flex-shrink: 0;
+  color: #facc15;
+  margin-top: 1px;
+}
+
+/* ── Document upload list ─────────────────────────────────────── */
+.doc-upload-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.doc-upload-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.doc-type-select {
+  font-size: 12px !important;
+  padding: 9px 10px !important;
+}
+
+.doc-file-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 9px 12px;
+  cursor: pointer;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease;
+  min-height: 40px;
+  overflow: hidden;
+}
+
+.doc-file-label:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+  background: rgba(99, 102, 241, 0.06);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.doc-file-placeholder,
+.doc-file-chosen {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doc-file-chosen {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.doc-remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 80, 80, 0.7);
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.doc-remove-btn:hover {
+  color: #f87171;
+}
+
+/* ── Add doc button ────────────────────────────────────────────── */
+.add-doc-btn {
+  width: 100%;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 9px 0;
+}
+
+/* ── Upload progress ──────────────────────────────────────────── */
+.upload-progress-wrap {
+  position: relative;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  height: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.upload-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #a78bfa);
+  border-radius: 8px;
+  transition: width 0.3s ease;
+}
+
+.upload-progress-label {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 9px;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ── Skip button ──────────────────────────────────────────────── */
+.skip-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 6px;
+  padding: 6px 0;
+  transition: color 0.2s;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.skip-btn:hover {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 480px) {
+  .doc-upload-row {
+    grid-template-columns: 1fr;
+  }
+}

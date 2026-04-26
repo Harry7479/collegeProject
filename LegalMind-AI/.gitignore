@@ -1,0 +1,18 @@
+# --- Python Backend ---
+.venv/
+__pycache__/
+
+# --- Node.js & React (Frontend + API Gateway) ---
+node_modules/
+npm-debug.log
+dist/
+build/
+
+# --- Security (NEVER PUSH SECRET KEYS) ---
+.env
+.env.local
+*.env
+
+# --- Ignored Folders (Privacy) ---
+api-gateway/uploads/
+.DS_Store

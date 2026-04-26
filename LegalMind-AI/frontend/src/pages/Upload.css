@@ -1,0 +1,138 @@
+/* ===== UPLOAD PAGE ===== */
+.drop-zone {
+  padding: 60px 32px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px dashed rgba(69, 71, 88, 0.25);
+  transition: all var(--transition-base);
+  margin-bottom: 32px;
+}
+
+.drop-zone:hover,
+.drop-zone.drag-over {
+  border-color: var(--primary-dim);
+  background: rgba(103, 93, 249, 0.05);
+}
+
+.drop-zone.drag-over {
+  transform: scale(1.01);
+}
+
+.drop-icon {
+  color: var(--primary);
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.drop-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  margin-bottom: 8px;
+}
+
+.drop-subtitle {
+  color: var(--on-surface-variant);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.drop-hint {
+  color: var(--on-surface-variant);
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+/* Upload List */
+.upload-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.upload-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+}
+
+.upload-item:hover {
+  transform: none;
+}
+
+.upload-item-icon {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.upload-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.upload-item-name {
+  display: block;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.upload-item-size {
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+}
+
+.upload-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-full);
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.upload-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-dim), var(--primary));
+  border-radius: var(--radius-full);
+  transition: width var(--transition-fast);
+}
+
+.upload-pct {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.status-done {
+  color: var(--teal);
+}
+
+.status-error {
+  color: var(--error);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.upload-remove {
+  background: none;
+  color: var(--on-surface-variant);
+  opacity: 0.4;
+  transition: opacity var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.upload-remove:hover {
+  opacity: 1;
+  color: var(--error);
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+  color: var(--on-surface-variant);
+}
